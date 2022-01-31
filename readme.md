@@ -42,6 +42,16 @@ Most likely your NAT is restricted. Use a VPN instead.
 
 https://en.wikipedia.org/wiki/Hole_punching_(networking)
 
+### I'm getting empty connections / messages every 15s.
+
+Those are used to keep the port mappings alive. Otherwise the address would change every 60 seconds or so.
+
+Please note that UDP does not have the concept of connections. Therefore this program maintains its own mappings for UDP sockets.
+
+### Want to learn more?
+
+Read the source code :)
+
 ### License
 
 MIT
