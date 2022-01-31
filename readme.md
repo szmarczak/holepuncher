@@ -38,6 +38,10 @@ curl http://111.111.111.111:8999/dog      # 222.222.222.222:33336
 
 Most likely your NAT is restricted. Use a VPN instead.
 
+### How does this work?
+
+https://en.wikipedia.org/wiki/Hole_punching_(networking)
+
 ### License
 
 MIT
