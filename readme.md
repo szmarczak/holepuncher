@@ -55,13 +55,13 @@ Therefore this program maintains its own mappings for UDP sockets.
 No. `fail2ban` will fail because your server sees the packets as coming from `::1`.
 
 ```
-    |------| What's my IP and port?  |------|
-    | b.js | ----------------------> | a.js |
-    |------|                         |------|
+                                       |------| What's my IP and port?  |------|
+                                       | b.js | ----------------------> | a.js |
+                                       |------|                         |------|
 
-    |------|  222.222.222.222:33333  |------|
-    | b.js | <---------------------- | a.js |
-    |------|                         |------|
+                                       |------|  222.222.222.222:33333  |------|
+                                       | b.js | <---------------------- | a.js |
+                                       |------|                         |------|
 
                                          ::1
     |--------|                         |------|                         |----------|
