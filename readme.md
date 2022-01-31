@@ -44,9 +44,31 @@ https://en.wikipedia.org/wiki/Hole_punching_(networking)
 
 ### I'm getting empty connections / messages every 15s.
 
-Those are used to keep the port mappings alive. Otherwise the address would change every 60 seconds or so.
+Those are used to keep the port mappings alive.\
+Otherwise the address would change every 60 seconds or so.
 
-Please note that UDP does not have the concept of connections. Therefore this program maintains its own mappings for UDP sockets.
+Please note that UDP does not have the concept of connections.\
+Therefore this program maintains its own mappings for UDP sockets.
+
+### Can share SSH?
+
+No. `fail2ban` will fail because your server sees the packets as coming from `::1`.
+
+```
+    |------| What's my IP and port?  |------|
+    | b.js | ----------------------> | a.js |
+    |------|                         |------|
+
+    |------|  222.222.222.222:33333  |------|
+    | b.js | <---------------------- | a.js |
+    |------|                         |------|
+
+                                         ::1
+    |--------|                         |------|                         |----------|
+    | server | <---------------------> | b.js | <---------------------> | internet |
+    |--------|                         |------|                         |----------|
+The thing you want to share.          holepuncher                          anyone
+```
 
 ### Want to learn more?
 
