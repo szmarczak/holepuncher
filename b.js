@@ -79,7 +79,11 @@ const proxyTcp = (from, to, task) => {
 	const server = net.createServer(source => {
 		abortClose();
 
+		source.setNoDelay(true);
+
 		const target = net.connect(to);
+
+		target.setNoDelay(true);
 
 		source.once('close', () => {
 			target.resume();
