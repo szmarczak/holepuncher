@@ -36,6 +36,8 @@ curl http://111.111.111.111:8999/dog      # 222.222.222.222:33336
 
 ### The HTTP server returned an address, but the connection failed.
 
+> **This does not work behind [CGNAT](https://en.wikipedia.org/wiki/Carrier-grade_NAT).**
+
 Most likely your NAT is restricted. Use a VPN instead.
 
 ### How does this work?
