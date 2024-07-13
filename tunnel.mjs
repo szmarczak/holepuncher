@@ -97,9 +97,8 @@ const proxyTcp = (from, task) => {
 			});
 			socket.once('close', hadError => {
 				if (hadError && !connected) {
-					setTimeout(() => {
-						server.close();
-					}, 1000);
+					server.close();
+					runTcpTask(task);
 				} else {
 					// console.error(`heartbeat ok: ${task.public.ip}:${task.public.port}`);
 
@@ -111,10 +110,6 @@ const proxyTcp = (from, task) => {
 		};
 
 		connect();
-	});
-
-	server.once('close', () => {
-		runTcpTask(task);
 	});
 };
 
@@ -161,7 +156,7 @@ const hole = async () => {
 	}
 
 	// Sleep to allow the kernel free the port
-	await sleep(20);
+	await sleep(2000);
 
 	const body = Buffer.concat(chunks).toString();
 
@@ -233,11 +228,11 @@ const server = http.createServer((request, response) => {
 			await sleep(1000);
 		}
 	} while (true);
-	
+
 	for (const task of tcp) {
 		runTcpTask(task);
 	}
-	
+
 	for (const task of udp) {
 		runUdpTask(task);
 	}
