@@ -179,7 +179,7 @@ const runTcpTask = async task => {
 
 			break;
 		} catch (error) {
-			if (error.code) {
+			if ('code' in error || String(error).startsWith('error code: ')) {
 				await sleep(1000);
 			} else {
 				throw error;
