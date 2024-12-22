@@ -156,7 +156,8 @@ const hole = async () => {
 	}
 
 	// Sleep to allow the kernel free the port
-	await sleep(2000);
+	console.log(`${new Date().toJSON()} Sleeping for 61s due to TIME_WAIT, port = ${localPort}`);
+	await sleep(61_000);
 
 	const body = Buffer.concat(chunks).toString();
 
